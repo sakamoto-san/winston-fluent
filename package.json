@@ -30,5 +30,11 @@
   },
   "engines": {
     "node": "0.8.x"
-  }
+  },
+  "readmeFilename": "README.md",
+  "gitHead": "3384ee5b05515b38e79b739c54479840707c3142",
+  "directories": {
+    "test": "test"
+  },
+  "license": "MIT"
 }
