@@ -1,0 +1,34 @@
+{
+  "name": "winston-fluent",
+  "description": "A fluent transport for winston",
+  "version": "0.1.0",
+  "author": "Hironori Takahashi <oriental25@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sakamoto-san/winston-fluent.git"
+  },
+  "keywords": [
+    "logging",
+    "tools",
+    "sysadmin",
+    "winston",
+    "fluent",
+    "td-agent"
+  ],
+  "dependencies": {
+    "fluent-logger": "~0.2.3"
+  },
+  "devDependencies": {
+    "vows": "~0.7.0"
+  },
+  "peerDependencies": {
+    "winston": ">=0.5.0 <0.7.1"
+  },
+  "main": "./lib/winston-fluent",
+  "scripts": {
+    "test": "vows test/*-test.js --spec"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
+}
