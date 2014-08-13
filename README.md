@@ -1,6 +1,8 @@
 # winston-fluent
 
-A fluent transport for [winston][0].
+A [Fluentd](https://github.com/fluent/fluentd) transport for [Winston](https://github.com/flatiron/winston).
+
+The Fluentd transport uses [fluent-logger](https://github.com/fluent/fluent-logger-node) to send logs to Fluentd over TCP.
 
 ## Installation
 
@@ -19,21 +21,35 @@ A fluent transport for [winston][0].
 
 ## Usage
 ``` js
-  var winston = require('winston');
-  
-  //
-  // Requiring `winston-fluent` will expose 
-  // `winston.transports.Fluent`
-  //
-  require('winston-syslog').Fluent;
-  
-  winston.add(winston.transports.Fluent, options);
+var winston = require('winston');
+
+//
+// Requiring `winston-fluent` exposes 
+// `winston.transports.Fluent`
+//
+require('winston-fluent').Fluent;
+
+winston.add(winston.transports.Fluent, options);
 ```
 
-The Fluent transport uses [fluent-logger](https://github.com/yssk22/fluent-logger-node). Options are following and will be passed to it.
+`options` should be a JavaScript object with the following key-value pairs:
 
-* __tag:__ Required. Tag of fluent-logger. This will be used as the first parameter of FluentSender constructor.
-* __options:__ Optional. Params to connect to fluent.(ex. { host: 'localhost', port: 24224, timeout: 3.0, verbose: false }) This will be used as the second parameter of FluentSender constructor.
-* __label:__ Required. Label of each log. 
+* __tag:__ Required. This is the first part of the Fluentd tag.
+* __label:__ Required. This is the second part of the Fluentd tag.
+* __host:__ Optional (default=localhost). The host for Fluentd.
+* __port:__ Optional (default=24224). The port for Fluentd.
+* __timeout:__ optional (default=3.0). Socket timeout for the TCP connection to Fluentd.
 
-[0]: https://github.com/indexzero/winston
+So, here is a working code snippet
+
+``` js
+var winston = require('winston');
+require('winston-fluent').Fluent;
+winston.add(winston.transports.Fluent, { tag: "fluentd", label: "myapp" });
+
+winston.log("error", "My great alert!");
+// this logs the event { "level": "error", "message: "My great alert" } to Fluentd
+
+winston.log("info", "Some user event", { user_id: 12938122, action: "clicked" })
+// this logs the event { "level": "info", "message: "Some user event", "user_id": 12938122, "action": "clicked" } to Fluentd
+```
