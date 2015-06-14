@@ -16,13 +16,13 @@
     "td-agent"
   ],
   "dependencies": {
-    "fluent-logger": "~0.2.3"
+    "fluent-logger-node": "0.0.3"
   },
   "devDependencies": {
     "vows": "~0.7.0"
   },
   "peerDependencies": {
-    "winston": ">=0.5.0 <0.7.1"
+    "winston": "^0.8.0"
   },
   "main": "./lib/winston-fluent",
   "scripts": {
