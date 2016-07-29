@@ -1,5 +1,7 @@
 # winston-fluent
 
+[DEPRECATED]: this is no longer supported, please consider using [fluent-logger](https://github.com/fluent/fluent-logger-node#winston) instead
+
 A [Fluentd](https://github.com/fluent/fluentd) transport for [Winston](https://github.com/flatiron/winston).
 
 The Fluentd transport uses [fluent-logger](https://github.com/fluent/fluent-logger-node) to send logs to Fluentd over TCP.
